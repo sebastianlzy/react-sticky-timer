@@ -1,0 +1,25 @@
+.sticky-timer {
+  background-color: hsl(171, 100%, 41%);
+  color: white;
+}
+
+.react-timer {
+  margin: 80px auto;
+}
+
+.container .inputs {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+.container .state {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+code {
+  white-space: pre-wrap;       /* css-3 */
+  word-wrap:break-word;
+}
