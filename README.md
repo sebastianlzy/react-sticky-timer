@@ -1,7 +1,7 @@
 # Simple Log For Super Agent 
 
 ### Introduction
-A simple to use countdown sticky that sticks to the top 
+A simple to use countdown sticky that sticks to the top. [demo](https://sebastianlzy.github.io/react-sticky-timer/)
 
 ### Dependencies
 [momentjs](http://momentjs.com/)
