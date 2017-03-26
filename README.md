@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/sebastianlzy/react-sticky-timer.svg?branch=master)](https://travis-ci.org/sebastianlzy/react-sticky-timer)
 
 ### Introduction
-A simple to use countdown sticky that sticks to the top. [demo](https://sebastianlzy.github.io/react-sticky-timer/)
+A simple countdown sticky that sticks to the top. [demo](https://sebastianlzy.github.io/react-sticky-timer/)
 
 ### Dependencies
 [momentjs](http://momentjs.com/)
