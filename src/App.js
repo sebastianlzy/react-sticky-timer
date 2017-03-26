@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 
-import StickyTimer from './StickyTImer';
+import StickyTimer from './StickyTimer';
 import './App.css';
 
 class App extends Component {
@@ -58,7 +58,7 @@ class App extends Component {
   };
 
   render() {
-    const language = {
+    const units = {
       seconds: '',
       minutes: ':',
       hours: ':',
@@ -71,7 +71,7 @@ class App extends Component {
         <StickyTimer
           textMessage={this.state.message}
           end={moment(this.state.end)}
-          language={language}
+          units={units}
           countDownMessage={this.state.countDownMessage}
         />
         <div className="container">

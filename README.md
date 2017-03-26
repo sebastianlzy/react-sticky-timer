@@ -1,4 +1,5 @@
 # React Sticky Timer
+[![Build Status](https://travis-ci.org/sebastianlzy/react-sticky-timer.svg?branch=master)](https://travis-ci.org/sebastianlzy/react-sticky-timer)
 
 ### Introduction
 A simple to use countdown sticky that sticks to the top. [demo](https://sebastianlzy.github.io/react-sticky-timer/)
@@ -14,12 +15,22 @@ A simple to use countdown sticky that sticks to the top. [demo](https://sebastia
 ```
 
 ### Usage
-
+```js
+    const units = {
+        seconds: '',
+        minutes: ':',
+        hours: ':',
+        days: 'day',
+        years: 'year',
+        months: 'month'
+    };
+```
+    
 ```js
     <StickyTimer
         textMessage={this.state.message}
         end={moment(this.state.end)}
-        language={language}
+        units={units}
         countDownMessage={this.state.countDownMessage}
     />
 ```
@@ -29,7 +40,7 @@ A simple to use countdown sticky that sticks to the top. [demo](https://sebastia
 ```js
   static propTypes = {
      end: PropTypes.object,
-     language: PropTypes.object,
+     units: PropTypes.object,
      textMessage: PropTypes.string,
      countDownMessage: PropTypes.string,
      styleSticky: PropTypes.object,

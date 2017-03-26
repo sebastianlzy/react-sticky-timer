@@ -6,13 +6,13 @@ class Timer extends React.Component {
   intervalCount;
   static propTypes = {
     end: PropTypes.object,
-    language: PropTypes.object,
+    units: PropTypes.object,
     className: PropTypes.string,
     style: PropTypes.object
   };
 
   static defaultProps = {
-    language: {
+    units: {
       seconds: 'second',
       minutes: 'minute',
       hours: 'hour',
@@ -67,7 +67,7 @@ class Timer extends React.Component {
     const countdownText = ['years', 'months', 'days', 'hours', 'minutes', 'seconds'].map((timeUnit) => {
       let timeDuration = momentDuration[timeUnit]();
       if (timeDuration > 0 || ['minutes', 'seconds'].indexOf(timeUnit) > -1) {
-        return `${this.makeItADoubleDigit(timeDuration)} ${this.pluraize(timeDuration, this.props.language[timeUnit])}`
+        return `${this.makeItADoubleDigit(timeDuration)} ${this.pluraize(timeDuration, this.props.units[timeUnit])}`
       }
       return '';
     });

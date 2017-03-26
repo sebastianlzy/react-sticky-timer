@@ -7,7 +7,7 @@ import Text from './text/Text';
 class StickyTimer extends React.Component {
   static propTypes = {
     end: PropTypes.object,
-    language: PropTypes.object,
+    units: PropTypes.object,
     textMessage: PropTypes.string,
     countDownMessage: PropTypes.string,
     styleSticky: PropTypes.object,
@@ -42,7 +42,7 @@ class StickyTimer extends React.Component {
             end={moment(this.props.end)}
             className={this.props.classNameTimer}
             countDownMessage={this.props.countDownMessage}
-            language={this.props.language}
+            units={this.props.units}
             style={this.props.styleTimer}
           />
       </div>
