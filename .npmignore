@@ -8,7 +8,6 @@ lib/App.test.js
 /coverage
 # production
 /build
-/lib
 
 # misc
 .DS_Store
