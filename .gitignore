@@ -2,11 +2,13 @@
 .idea
 # dependencies
 /node_modules
+lib/App.test.js
 
 # testing
 /coverage
 # production
 /build
+.lib
 
 # misc
 .DS_Store
