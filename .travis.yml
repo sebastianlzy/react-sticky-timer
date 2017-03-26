@@ -4,6 +4,7 @@ node_js: '6'
 before_script: npm install
 script:
   - npm test
+  - npm run transpile
 cache:
   directories:
     - node_modules
