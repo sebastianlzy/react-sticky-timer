@@ -29,7 +29,6 @@ A simple to use countdown sticky that sticks to the top. [demo](https://sebastia
 ```js
   static propTypes = {
      end: PropTypes.object,
-     start: PropTypes.object,
      language: PropTypes.object,
      textMessage: PropTypes.string,
      countDownMessage: PropTypes.string,
