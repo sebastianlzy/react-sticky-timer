@@ -1,7 +1,0 @@
-src
-public
-dist
-.gitignore
-.npmignore
-.babelrc
-.travis.yml
