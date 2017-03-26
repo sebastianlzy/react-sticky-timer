@@ -1,6 +1,6 @@
 {
   "name": "react-sticky-timer",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "main": "lib/main.js",
   "devDependencies": {
     "babel-cli": "^6.6.0",
