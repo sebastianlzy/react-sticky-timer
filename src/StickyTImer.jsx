@@ -3,21 +3,49 @@ import moment from 'moment';
 
 import Timer from './timer/Timer';
 import Text from './text/Text';
-import './StickyTimer.css';
 
 class StickyTimer extends React.Component {
   static propTypes = {
     end: PropTypes.object,
     start: PropTypes.object,
     language: PropTypes.object,
-    textMessage: PropTypes.string
+    textMessage: PropTypes.string,
+    countDownMessage: PropTypes.string,
+    styleSticky: PropTypes.object,
+    styleText: PropTypes.object,
+    styleTimer: PropTypes.object,
+    classNameText: PropTypes.string,
+    classNameTimer: PropTypes.string,
+    classNameSticky: PropTypes.string
+  };
+
+  static defaultProps = {
+    styleSticky: {
+      textAlign: 'center',
+      position: 'fixed',
+      top: 0,
+      width: '100%'
+    },
+    classNameText: 'text',
+    classNameTimer: 'timer',
+    classNameSticky: 'sticky-timer'
   };
 
   render() {
     return (
-      <div className='sticky-timer'>
-          <Text textMessage={this.props.textMessage} className={'text'}/>
-          <Timer end={this.props.end} start={this.props.start} className={'timer'} language={this.props.language}/>
+      <div className={this.props.classNameSticky} style={this.props.styleSticky}>
+          <Text
+            message={this.props.textMessage}
+            className={this.props.classNameText}
+            style={this.props.styleText}
+          />
+          <Timer
+            end={moment(this.props.end)}
+            className={this.props.classNameTimer}
+            countDownMessage={this.props.countDownMessage}
+            language={this.props.language}
+            style={this.props.styleTimer}
+          />
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
 import moment from 'moment';
 
 import StickyTimer from './StickyTImer';
@@ -8,7 +8,7 @@ class App extends Component {
 
   state = {
     message: 'I am counting down to a brand new year',
-    start: '2017-04-15 00:00:00',
+    countDownMessage: 'Start in',
     end: '2018-01-01 00:00:00'
   };
 
@@ -37,37 +37,51 @@ class App extends Component {
     )
   };
 
+  renderState = () => {
+    return (
+      <div className="state">
+            <pre>
+              <code>
+                &#123;
+                <br/>
+                &nbsp;&nbsp;message: '{this.state.message}',
+                <br/>
+                &nbsp;&nbsp;countDownMessage: '{this.state.countDownMessage}',
+                <br/>
+                &nbsp;&nbsp;end: '{this.state.end}',
+                <br/>
+                &#125;
+              </code>
+            </pre>
+      </div>
+    )
+  };
+
   render() {
-    const start = this.state.start === '' ? moment() : moment(this.state.start);
+    const language = {
+      seconds: '',
+      minutes: ':',
+      hours: ':',
+      days: 'day',
+      years: 'year',
+      months: 'month'
+    };
     return (
       <div className="react-timer">
         <StickyTimer
           textMessage={this.state.message}
           end={moment(this.state.end)}
-          start={start}
+          language={language}
+          countDownMessage={this.state.countDownMessage}
         />
         <div className="container">
           <h1 className='title'>React Sticky Timer</h1>
           <div className="inputs">
             {this.renderInputFields('message', 'Text Message', 'envelope')}
-            {this.renderInputFields('start', 'Start Date Time', 'calendar')}
+            {this.renderInputFields('countDownMessage', 'Count Down Message', 'envelope')}
             {this.renderInputFields('end', 'End Date Time', 'calendar')}
           </div>
-          <div className="state">
-            <pre>
-              <code>
-                &#123;
-                <br/>
-                &nbsp;&nbsp;message: {this.state.message},
-                <br/>
-                &nbsp;&nbsp;end: {this.state.end},
-                <br/>
-                &nbsp;&nbsp;start: {this.state.start}
-                <br/>
-                &#125;
-              </code>
-            </pre>
-          </div>
+          {this.renderState()}
         </div>
       </div>
     );

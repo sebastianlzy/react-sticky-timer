@@ -2,11 +2,13 @@ import React, {PropTypes} from 'react';
 import moment from 'moment';
 
 class Timer extends React.Component {
+
+  intervalCount;
   static propTypes = {
     end: PropTypes.object,
-    start: PropTypes.object,
     language: PropTypes.object,
-    className: PropTypes.string
+    className: PropTypes.string,
+    style: PropTypes.object
   };
 
   static defaultProps = {
@@ -17,16 +19,37 @@ class Timer extends React.Component {
       days: 'day',
       years: 'year',
       months: 'month'
+    },
+    style: {
+      display: 'inline-block',
+      padding: '10px'
     }
   };
 
+  state = {
+    countDownText: '',
+    isVisible: true
+  };
+
+  componentDidMount = () => {
+    this.startInterval(this.countDownTimer)
+  };
+
+  startInterval = (func) => {
+      clearInterval(this.intervalCount);
+      this.intervalCount = setInterval(func, 1000)
+  };
+
+  isAlphaNumeric = (string) => {
+    return /^[a-z0-9]+$/i.test(string);
+  };
+
   pluraize = (value, word) => {
-    if(value > 1) return `${word}s`;
+    if(value > 1 && this.isAlphaNumeric(word)) return `${word}s`;
     return word;
   };
 
   makeItADoubleDigit = (value) => {
-    console.log('value - ', value);
     if(value.toString().length === 1){
       return `0${value}`
     }
@@ -34,24 +57,32 @@ class Timer extends React.Component {
   };
 
   countDownTimer = () => {
-    const timeDifferencesInMilliSeconds = this.props.end.diff(this.props.start);
+    const timeDifferencesInMilliSeconds = this.props.end.diff(moment());
+    if(timeDifferencesInMilliSeconds <= 0) {
+      this.setState({countDownText: '', isVisible: false});
+      return ;
+    }
     const momentDuration = moment.duration(timeDifferencesInMilliSeconds);
-    const {days, hours, minutes, seconds} = this.props.language;
-    const countdownText = ['years', 'months', 'days', 'hours', 'minutes', 'seconds'].map((timeUnit) => {
-        let timeDuration = momentDuration[timeUnit]();
-        if (timeDuration > 0 || ['minutes', 'seconds'].indexOf(timeUnit) > -1) {
-          return `${this.makeItADoubleDigit(timeDuration)} ${this.pluraize(timeDuration, this.props.language[timeUnit])}`
-        }
-        return '';
-    });
 
-    return countdownText.join(' ');
+    const countdownText = ['years', 'months', 'days', 'hours', 'minutes', 'seconds'].map((timeUnit) => {
+      let timeDuration = momentDuration[timeUnit]();
+      if (timeDuration > 0 || ['minutes', 'seconds'].indexOf(timeUnit) > -1) {
+        return `${this.makeItADoubleDigit(timeDuration)} ${this.pluraize(timeDuration, this.props.language[timeUnit])}`
+      }
+      return '';
+    });
+    this.setState({countDownText: countdownText.join(' '), isVisible: true})
+
   };
 
   render() {
+    if (!this.state.isVisible) {
+      return null;
+    }
     return (
-      <div className={this.props.className}>
-        {this.countDownTimer()}
+      <div className={this.props.className} style={this.props.style}>
+        {this.props.countDownMessage}
+        {this.state.countDownText}
       </div>
     );
   }
